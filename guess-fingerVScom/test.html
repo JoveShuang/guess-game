@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            text-align: center;
+        }
+        .comjdstb{
+            height:200px;
+        }
+        .times{
+            font-size:30px;
+            color:chartreuse;
+        }
+        .com-img{
+            display: none;
+        }
+        img{
+            width:100px;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>小游戏石头剪刀布</h1>
+        <div class="comjdstb">
+            <h3>电脑的选择:</h3>
+            <p class="times"></p>
+            <img src="" class="com-img"  alt="">
+        </div>
+        <div class="playerjdstb">
+            <h3>你的选择:</h3>
+            <label class="main-box">
+                <img src="./img/jiandao.png" alt="剪刀">
+                <input class="guess-option" type="radio" name="jdstb" id="jd" value="jd" checked>
+            </label>
+            <label class="main-box">
+                <img src="./img/shitou.png" alt="石头">
+                <input class="guess-option" type="radio" name="jdstb" id="st" value="st">
+            </label>
+            <label class="main-box">
+                <img src="./img/bu.png" alt="布">
+                <input class="guess-option" type="radio" name="jdstb" id="bu" value="bu">
+            </label>
+            <button id="chuquan">确定</button>
+            <button id="again" style="display: none;">再来一局</button>
+            
+        </div>
+        <p id="results"></p>
+    </div>
+
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="./jdstb.js"></script>
+<script>
+    // //定义变量 依次:1P 出的,com出的,结果显示位置,判定结果,1P出的剪刀石头布文字,com剪刀石头布文字
+    // var jdstb = '';
+    // var jdstb1 = '';
+    // var results = $('#results');
+    // var end = 100;
+    // var p1 = '';
+    // var com = '';
+    // //点击确定执行操作
+    // $('#chuquan').on('click',function (){
+    //     $('label').hide();
+    //     jdstb1 = comjdstb();
+    //     var i =3;
+    //     $('.times').text(i);
+    //     var timeread = setInterval((function(){
+    //         --i;
+    //         $('.times').text(i);
+            
+    //     }),900)
+    //     setTimeout(function(){
+    //         clearInterval(timeread);
+    //         i=3;
+    //         $('.times').text('');
+    //         $('input').each(function () {
+    //             // $(this).parent().hide();
+    //             if ($(this).prop('checked') === true) {
+    //                 switch ($(this).val()) {
+    //                     case 'jd':
+    //                         jdstb = 'jd';
+    //                         $(this).parent('label').show()
+    //                         break;
+    //                     case 'st':
+    //                         jdstb = 'st';
+    //                         $(this).parent('label').show();
+    //                         break;
+    //                     case 'bu':
+    //                         jdstb = 'bu';
+    //                         $(this).parent('label').show()
+    //                         break;
+    //                 }
+    //             }
+    //         })
+    //         switch (jdstb) {
+    //             case 'jd':
+    //                 p1 = "剪刀";
+    //                 break;
+    //             case 'st':
+    //                 p1 = "石头";
+    //                 break;
+    //             case 'bu':
+    //                 p1 = "布"
+    //                 break;
+    //         }
+    //         switch (jdstb1) {
+    //             case 'jd':
+    //                 com = "剪刀";
+    //                 $('.comjdstb').append('<img src="./img/jiandao.png">');
+    //                 break;
+    //             case 'st':
+    //                 com = "石头";
+    //                 $('.comjdstb').append('<img src="./img/shitou.png">');
+    //                 break;
+    //             case 'bu':
+    //                 com = "布"
+    //                 $('.comjdstb').append('<img src="./img/bu.png">');
+    //                 break;
+    //         }
+
+    //         end = compare(jdstb, jdstb1);
+    //         switch (end) {
+    //             case 0:
+    //                 results.text('你出的' + p1 + '电脑出的是' + com + '  哎呀,是平局');
+    //                 break;
+    //             case 1:
+    //                 results.text('你出的' + p1 + '电脑出的是' + com + '  恭喜你,战胜了智商800的电脑');
+    //                 break;
+    //             case -1:
+    //                 results.text('你出的' + p1 + '电脑出的是' + com + '  真遗憾,你败给了智商-100的电脑');
+    //                 break;
+    //         }
+    //         $('#chuquan').hide();
+    //         $('#again').show();
+    //     },2800)
+    // })
+    // //点击再来一局
+    // $('#again').on('click',function(){
+    //     $(this).hide();
+    //     $('label').show();
+    //     $('#chuquan').show();
+    //     $('#results').text('');
+    //     $('.comjdstb img').remove();
+    // })
+    // function animations(){
+        
+    // }
+    // function comjdstb(){
+    //     var num = Math.random() * 10;
+    //     var comjdstb1 ='';
+    //     switch(true){
+    //         case num<4 : 
+    //         comjdstb1 = 'jd';
+    //         break;
+    //         case num>4&&num<8 :
+    //         comjdstb1 = 'st';
+    //         break;
+    //         case num>8 :
+    //         comjdstb1 = 'bu';
+    //         break;
+    //     }
+    //     return comjdstb1;
+    // }
+    // function compare(p1,com){
+    //     switch(p1){
+    //         case 'jd':
+    //             switch(com){
+    //                 case 'jd': return 0;
+    //                 case 'st': return -1;
+    //                 case 'bu': return 1; 
+    //             }
+    //         break;
+    //         case 'st':
+    //             switch(com){
+    //                 case 'jd': return 1;
+    //                 case 'st': return 0;
+    //                 case 'bu': return -1; 
+    //             }
+    //         case 'bu':
+    //             switch (com) {
+    //                 case 'jd': return -1;
+    //                 case 'st': return 1;
+    //                 case 'bu': return 0;
+    //             }
+    //     }
+    // }
+</script>
+<script>
+    $(function(){
+        //初始化判定元素,开局先确定
+        var prevent = "#again";
+        var gameParams = game_init();
+        gameParams.set_img_url('./img/jiandao.png', './img/st.png', './img/bu.png');
+        
+        $('#chuquan').on('click', function(){
+            
+            //判断此时是确定按钮
+            if (prevent != '#again') {
+                return false;
+            }
+            
+            finger_guessing(gameParams.get_params());
+            
+            //延时更改判定元素
+            setTimeout(function () {
+                prevent = '#chuquan';
+            },2800)
+            
+        });
+        
+        $('#again').on('click',function(){
+
+            //判断此时是再来一局按钮
+            if(prevent != '#chuquan'){
+                return false;
+            }
+            
+            game_again(gameParams.get_params());
+            
+            //更改判定元素
+            prevent = '#again';
+        });
+
+        
+    })
+</script>
+</html>
